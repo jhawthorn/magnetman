@@ -88,6 +88,7 @@ export default class extends Phaser.Sprite {
     } else {
       /* in air */
       this.body.drag.x = 100;
+      this.body.drag.y = 200;
       this.animations.play('jump');
     }
   }
