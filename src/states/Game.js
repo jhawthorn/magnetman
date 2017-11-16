@@ -49,8 +49,8 @@ export default class extends Phaser.State {
   update() {
     game.physics.arcade.collide(this.player, this.layer);
 
-    this.background.anchor.x = (this.game.camera.x / this.background.width / 2) % game.width;
-    this.background.anchor.y = (this.game.camera.y / this.background.height / 2) % game.height;
+    this.background.anchor.x = (this.game.camera.x / this.background.width / 2) % 0.5;
+    this.background.anchor.y = (this.game.camera.y / this.background.height / 2) % 0.5;
   }
 
   render () {
