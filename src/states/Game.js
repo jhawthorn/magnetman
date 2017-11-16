@@ -31,12 +31,15 @@ export default class extends Phaser.State {
     this.background.fixedToCamera = true;
     game.world.sendToBack(this.background);
 
-
-    this.player = new Player({
-      game: this.game,
-      x: this.world.centerY,
-      y: this.world.centerY,
-      map: this.map
+    this.map.objects.objects.forEach((object) => {
+      if(object.type == "player") {
+        this.player = new Player({
+          game: this.game,
+          x: object.x,
+          y: object.y,
+          map: this.map
+        });
+      }
     });
 
     this.game.add.existing(this.player);
