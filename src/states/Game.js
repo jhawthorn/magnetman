@@ -30,7 +30,8 @@ export default class extends Phaser.State {
     this.player = new Player({
       game: this.game,
       x: this.world.centerY,
-      y: this.world.centerY
+      y: this.world.centerY,
+      map: this.map
     });
 
     this.game.add.existing(this.player);
@@ -44,5 +45,6 @@ export default class extends Phaser.State {
   render () {
     game.debug.text(game.time.fps || '--', 2, 14, "#00ff00");
     //game.debug.body(this.player);
+    game.debug.bodyInfo(this.player, 32, 20);
   }
 }
