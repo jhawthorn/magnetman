@@ -24,8 +24,12 @@ export default class extends Phaser.State {
     this.map = game.add.tilemap('map1');
     this.map.addTilesetImage('magnoman', 'tiles');
     this.map.setCollisionBetween(0,80);
-    this.layer = this.map.createLayer('background');
+    this.layer = this.map.createLayer(0);
     this.layer.resizeWorld();
+
+    this.background = game.add.tileSprite(0, 0, game.world.width, game.world.height, 'bg');
+    game.world.sendToBack(this.background);
+
 
     this.player = new Player({
       game: this.game,
