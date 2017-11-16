@@ -50,6 +50,7 @@ module.exports = {
       hash: false
     }),
     new BrowserSyncPlugin({
+      open: false,
       host: process.env.IP || 'localhost',
       port: process.env.PORT || 3000,
       server: {

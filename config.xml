@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>PhaserES6Webpack</name>
+    <name>MagneMan</name>
     <description>
     </description>
-    <author email="leandcabrera@gmail.com" href="">
-        leandro cabrera
+    <author email="john.hawthorn@gmail.com" href="">
+        John Hawthorn
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -23,5 +23,8 @@
     </platform>
     <preference name="Fullscreen" value="true" />
     <preference name="orientation" value="landscape" />
-    <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
+    <engine name="android" spec="^6.4.0" />
+    <engine name="browser" spec="^4.1.0" />
+    <engine name="ios" spec="^4.4.0" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
 </widget>

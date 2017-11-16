@@ -6,6 +6,10 @@ export default class extends Phaser.State {
     this.stage.backgroundColor = '#EDEEC9'
     this.fontsReady = false
     this.fontsLoaded = this.fontsLoaded.bind(this)
+
+    this.game.scale.windowConstraints.bottom = "visual";
+    this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
   }
 
   preload () {
