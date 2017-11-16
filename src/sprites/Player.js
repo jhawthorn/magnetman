@@ -39,12 +39,11 @@ export default class extends Phaser.Sprite {
       this.animations.play('stand');
     }
 
-    if (this.jumpButton.isDown && this.body.onFloor()) {
-      this.body.velocity.y = -500;
-    }
-
     if (this.body.onFloor()) {
       this.body.drag.x = 800;
+      if (this.jumpButton.isDown) {
+        this.body.velocity.y = -500;
+      }
     } else {
       this.body.drag.x = 100;
       this.animations.play('jump');
