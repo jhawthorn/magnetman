@@ -27,7 +27,8 @@ export default class extends Phaser.State {
     this.layer = this.map.createLayer(0);
     this.layer.resizeWorld();
 
-    this.background = game.add.tileSprite(0, 0, game.world.width, game.world.height, 'bg');
+    this.background = game.add.tileSprite(0, 0, game.width * 2, game.height * 2, 'bg');
+    this.background.fixedToCamera = true;
     game.world.sendToBack(this.background);
 
 
@@ -44,6 +45,9 @@ export default class extends Phaser.State {
 
   update() {
     game.physics.arcade.collide(this.player, this.layer);
+
+    this.background.anchor.x = (this.game.camera.x / this.background.width / 2) % game.width;
+    this.background.anchor.y = (this.game.camera.y / this.background.height / 2) % game.height;
   }
 
   render () {
