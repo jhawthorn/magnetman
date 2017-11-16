@@ -20,7 +20,7 @@ export default class extends Phaser.Sprite {
 
     this.animations.play('walk');
 
-    this.anchor.setTo(0.5);
+    this.anchor.setTo(0.5, 1);
 
     this.cursors = game.input.keyboard.createCursorKeys();
     this.jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.Z);
