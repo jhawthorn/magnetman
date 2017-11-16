@@ -14,21 +14,18 @@ export default class extends Phaser.State {
   }
 
   create () {
-    //this.map = game.add.tilemap('map');
-    //var layer = this.map.createLayer(0);
-    //layer.resizeWorld();
-    //game.world.setBounds(0, 0, 600, 600);
+    game.renderer.renderSession.roundPixels = true;
+    game.stage.smoothed = false;
 
-    //this.map.createLayer(1);
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+    game.physics.arcade.gravity.y = 300;
+    game.physics.arcade.setBoundsToWorld();
 
-    const bannerText = 'MagneMan';
-    let banner = this.add.text(this.world.centerX, 80, bannerText);
-    banner.font = 'Bangers';
-    banner.padding.set(10, 16);
-    banner.fontSize = 40;
-    banner.fill = '#77BFA3';
-    banner.smoothed = false;
-    banner.anchor.setTo(0.5);
+    this.map = game.add.tilemap('map1');
+    this.map.addTilesetImage('magnoman', 'tiles');
+    this.map.setCollisionBetween(0,80);
+    this.layer = this.map.createLayer('background');
+    this.layer.resizeWorld();
 
     this.player = new Player({
       game: this.game,
@@ -40,7 +37,12 @@ export default class extends Phaser.State {
     this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_LOCKON);
   }
 
+  update() {
+    game.physics.arcade.collide(this.player, this.layer);
+  }
+
   render () {
     game.debug.text(game.time.fps || '--', 2, 14, "#00ff00");
+    //game.debug.body(this.player);
   }
 }
