@@ -42,23 +42,19 @@ export default class extends Phaser.Sprite {
   }
 
   update () {
-    if(this.body.deltaX() < -1) {
+    if(this.body.deltaX() < -0.1) {
       this.scale.x = 1;
-    } else if(this.body.deltaX() > 1) {
+    } else if(this.body.deltaX() > 0.1) {
       this.scale.x = -1;
     }
 
-    if (this.cursors.left.isDown) {
+    if (this.cursors.left.isDown && !this.cursors.right.isDown) {
       this.body.velocity.x -= this.body.onFloor() ? 25 : 15;
       this.animations.play('walk');
-    }
-
-    if (this.cursors.right.isDown) {
+    } else if (this.cursors.right.isDown && !this.cursors.left.isDown) {
       this.body.velocity.x += this.body.onFloor() ? 25 : 15;
       this.animations.play('walk');
-    }
-
-    if (!this.cursors.right.isDown && !this.cursors.left.isDown) {
+    } else {
       this.animations.play('stand');
     }
 
