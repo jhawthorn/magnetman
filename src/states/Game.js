@@ -74,9 +74,8 @@ export default class extends Phaser.State {
   }
 
   takeDamage() {
-    if (!this.player.isInvulnerable()) {
-      this.player.hit();
-    }
+    /* restart level */
+    this.state.start('Game', true, false, this.level);
   }
 
   update() {

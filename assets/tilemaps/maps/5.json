@@ -13,8 +13,8 @@
                  "type":"circlebot",
                  "visible":true,
                  "width":8,
-                 "x":328,
-                 "y":40
+                 "x":255.067478437341,
+                 "y":47.6103500761035
                 }, 
                 {
                  "gid":1,
@@ -61,19 +61,7 @@
                  "type":"wheelbot",
                  "visible":true,
                  "width":8,
-                 "x":128,
-                 "y":240
-                }, 
-                {
-                 "gid":1,
-                 "height":8,
-                 "id":6,
-                 "name":"wheelbot",
-                 "rotation":0,
-                 "type":"wheelbot",
-                 "visible":true,
-                 "width":8,
-                 "x":168,
+                 "x":174.930492135972,
                  "y":240
                 }, 
                 {
@@ -139,18 +127,6 @@
                 {
                  "gid":1,
                  "height":8,
-                 "id":12,
-                 "name":"wheelbot",
-                 "rotation":0,
-                 "type":"wheelbot",
-                 "visible":true,
-                 "width":8,
-                 "x":576,
-                 "y":272
-                }, 
-                {
-                 "gid":1,
-                 "height":8,
                  "id":13,
                  "name":"wheelbot",
                  "rotation":0,
@@ -175,14 +151,26 @@
                 {
                  "gid":1,
                  "height":8,
-                 "id":15,
-                 "name":"wheelbot",
+                 "id":16,
+                 "name":"circlebot",
                  "rotation":0,
-                 "type":"wheelbot",
+                 "type":"circlebot",
                  "visible":true,
                  "width":8,
-                 "x":728,
-                 "y":272
+                 "x":368.588533739219,
+                 "y":96.443429731101
+                }, 
+                {
+                 "gid":1,
+                 "height":8,
+                 "id":17,
+                 "name":"circlebot",
+                 "rotation":0,
+                 "type":"circlebot",
+                 "visible":true,
+                 "width":8,
+                 "x":392.053779807205,
+                 "y":170.010147133435
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -201,7 +189,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":16,
+ "nextobjectid":18,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
