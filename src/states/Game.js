@@ -3,7 +3,8 @@ import Phaser from 'phaser'
 import Player from '../sprites/Player'
 
 export default class extends Phaser.State {
-  init () {
+  init (level) {
+    this.level = level;
     this.stage.backgroundColor = '#292634';
     //this.game.scale.windowConstraints.bottom = "visual";
     //this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -11,6 +12,8 @@ export default class extends Phaser.State {
 
   preload () {
     game.time.advancedTiming = true;
+
+    this.load.tilemap(`map${this.level}`, `assets/tilemaps/maps/${this.level}.json`, null, Phaser.Tilemap.TILED_JSON);
   }
 
   create () {
@@ -21,7 +24,7 @@ export default class extends Phaser.State {
     game.physics.arcade.gravity.y = 300;
     game.physics.arcade.setBoundsToWorld();
 
-    this.map = game.add.tilemap('map1');
+    this.map = game.add.tilemap(`map${this.level}`);
     this.map.addTilesetImage('magnoman', 'tiles');
     this.map.setCollisionBetween(0,80);
     this.layer = this.map.createLayer(0);
@@ -32,13 +35,16 @@ export default class extends Phaser.State {
     game.world.sendToBack(this.background);
 
     this.map.objects.objects.forEach((object) => {
+      const objectParams = {
+        game: this.game,
+        x: object.x,
+        y: object.y,
+        map: this.map,
+        state: this
+      }
+
       if(object.type == "player") {
-        this.player = new Player({
-          game: this.game,
-          x: object.x,
-          y: object.y,
-          map: this.map
-        });
+        this.player = new Player(objectParams);
       }
     });
 
@@ -46,6 +52,10 @@ export default class extends Phaser.State {
     game.world.bringToTop(this.layer);
 
     this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
+  }
+
+  nextLevel() {
+    this.state.start('Game', true, false, 2)
   }
 
   update() {
