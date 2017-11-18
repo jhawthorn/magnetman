@@ -1,6 +1,7 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
 import Player from '../sprites/Player'
+import Exit from '../sprites/Exit'
 
 export default class extends Phaser.State {
   init (level) {
@@ -45,21 +46,27 @@ export default class extends Phaser.State {
 
       if(object.type == "player") {
         this.player = new Player(objectParams);
+      } else if(object.type == "exit") {
+        this.exit = new Exit(objectParams);
       }
     });
 
+    this.game.add.existing(this.exit);
     this.game.add.existing(this.player);
+
     game.world.bringToTop(this.layer);
 
     this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
   }
 
   nextLevel() {
-    this.state.start('Game', true, false, 2)
+    this.state.start('Game', true, false, this.level + 1);
   }
 
   update() {
     game.physics.arcade.collide(this.player, this.layer);
+
+    game.physics.arcade.collide(this.player, this.exit, () => this.nextLevel());
 
     this.background.anchor.x = (this.game.camera.x / this.background.width / 2) % 0.5;
     this.background.anchor.y = (this.game.camera.y / this.background.height / 2) % 0.5;
@@ -68,6 +75,6 @@ export default class extends Phaser.State {
   render () {
     game.debug.text(game.time.fps || '--', 2, 14, "#00ff00");
     //game.debug.body(this.player);
-    game.debug.bodyInfo(this.player, 32, 20);
+    //game.debug.bodyInfo(this.player, 32, 20);
   }
 }
