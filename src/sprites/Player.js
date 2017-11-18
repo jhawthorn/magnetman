@@ -13,7 +13,7 @@ export default class extends Phaser.Sprite {
     this.body.maxVelocity.y = 300;
     this.body.maxVelocity.x = 150;
     this.body.linearDamping = 1;
-    this.body.setSize(20, 26, 0, 0);
+    this.body.setSize(17, 25, 1, 1);
 
     const fps = 15;
     this.animations.add('walk', [0,1,2,3,4,5,6,7], fps, true);

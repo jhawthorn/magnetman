@@ -43,6 +43,8 @@ export default class extends Phaser.State {
     });
 
     this.game.add.existing(this.player);
+    game.world.bringToTop(this.layer);
+
     this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_PLATFORMER);
   }
 
