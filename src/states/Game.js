@@ -2,6 +2,8 @@
 import Phaser from 'phaser'
 import Player from '../sprites/Player'
 import Exit from '../sprites/Exit'
+import CircleBot from '../sprites/CircleBot'
+import WheelBot from '../sprites/WheelBot'
 
 export default class extends Phaser.State {
   init (level) {
@@ -35,6 +37,8 @@ export default class extends Phaser.State {
     this.background.fixedToCamera = true;
     game.world.sendToBack(this.background);
 
+    this.enemies = game.add.group();
+
     this.map.objects.objects.forEach((object) => {
       const objectParams = {
         game: this.game,
@@ -48,6 +52,12 @@ export default class extends Phaser.State {
         this.player = new Player(objectParams);
       } else if(object.type == "exit") {
         this.exit = new Exit(objectParams);
+      } else if(object.type == "circlebot") {
+        const circleBot = new CircleBot(objectParams);
+        this.enemies.add(circleBot);
+      } else if(object.type == "wheelbot") {
+        const circleBot = new WheelBot(objectParams);
+        this.enemies.add(circleBot);
       }
     });
 
@@ -65,6 +75,7 @@ export default class extends Phaser.State {
 
   update() {
     game.physics.arcade.collide(this.player, this.layer);
+    game.physics.arcade.collide(this.enemies, this.layer);
 
     game.physics.arcade.collide(this.player, this.exit, () => this.nextLevel());
 
