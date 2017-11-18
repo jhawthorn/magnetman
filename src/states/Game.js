@@ -73,11 +73,18 @@ export default class extends Phaser.State {
     this.state.start('Game', true, false, this.level + 1);
   }
 
+  takeDamage() {
+    if (!this.player.isInvulnerable()) {
+      this.player.hit();
+    }
+  }
+
   update() {
     game.physics.arcade.collide(this.player, this.layer);
     game.physics.arcade.collide(this.enemies, this.layer);
 
-    game.physics.arcade.collide(this.player, this.exit, () => this.nextLevel());
+    game.physics.arcade.overlap(this.player, this.enemies, () => this.takeDamage());
+    game.physics.arcade.overlap(this.player, this.exit, () => this.nextLevel());
 
     this.background.anchor.x = (this.game.camera.x / this.background.width / 2) % 0.5;
     this.background.anchor.y = (this.game.camera.y / this.background.height / 2) % 0.5;

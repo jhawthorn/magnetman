@@ -27,6 +27,8 @@ export default class extends Phaser.Sprite {
 
     this.cursors = game.input.keyboard.createCursorKeys();
     this.jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.Z);
+
+    this.lastHit = -10000;
   }
 
   isGripping() {
@@ -87,5 +89,26 @@ export default class extends Phaser.Sprite {
       this.body.drag.y = 200;
       this.animations.play('jump');
     }
+
+    if (this.isInvulnerable()) {
+      this.alpha = 0.7;
+
+      this.tint = this.timeSinceHit() < 250 ? 0xff0000 : 0xffffff;
+    } else {
+      this.alpha = 1;
+    }
+  }
+
+  timeSinceHit() {
+    return game.time.now - this.lastHit;
+  }
+
+  isInvulnerable() {
+    return (this.timeSinceHit() < 1000);
+  }
+
+  hit() {
+    console.log("ow!");
+    this.lastHit = game.time.now;
   }
 }
