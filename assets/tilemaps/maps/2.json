@@ -73,8 +73,8 @@
                  "type":"player",
                  "visible":true,
                  "width":8,
-                 "x":24,
-                 "y":248
+                 "x":31.9237743493103,
+                 "y":73.330096512523
                 }, 
                 {
                  "gid":1,
@@ -194,6 +194,28 @@
          "spacing":0,
          "tilecount":80,
          "tileheight":8,
+         "tileproperties":
+            {
+             "13":
+                {
+                 "grip":true
+                },
+             "14":
+                {
+                 "grip":true
+                }
+            },
+         "tilepropertytypes":
+            {
+             "13":
+                {
+                 "grip":"bool"
+                },
+             "14":
+                {
+                 "grip":"bool"
+                }
+            },
          "tilewidth":8
         }],
  "tilewidth":8,
